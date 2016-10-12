@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 
-<!-- the program run but shoow me an error in the console -->
-
 <html>
     <head>
+
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
         <title>JavaScritp</title>
 
         <script type="text/javascript" src="script.js"> </script>
+
     </head>
+
     <body onload="setTimeout(show, 2000);">
 
         <div class="wrapper">
@@ -17,10 +18,10 @@
             <section id="hidden" style="visibility: hidden;"><p> Hello world </p></section>
 
             <!-- the program run but shoow me an error in the console -->
-            <button type="button" id="buttonSection" onclick="joke();" > Press for a joke</button>
+            <button type="button" id="buttonSection" onclick="DoAJoke();" > Press for a joke</button>
 
             <section>
-              <input type="button" value="Ajax" id="buttonSection" onclick="eventOnClick();" />
+              <input type="button" value="Ajax" id="buttonSection" onclick="secondJoke();" />
             </section>
           <hr />
         </div>
@@ -28,14 +29,15 @@
 
         <div class="exercise9">
           <br />
-          <section id="javashows">
-              Something to show
+          <button type="button" id="buttonJava" onclick="showRepositories()" > Press to see javascript text</button>
+
+          <p>Insert what you want to search</p>
+          <input type="text" id="Api" value="">
+          <button type="button" id="buttonApis" onclick="enterAnAPI(Api.value)" >Confirm</button>
+
+          <section>
+            <ul id="elementList"> </ul>
           </section>
-
-          <!-- exercise 10 -->
-          <input type="text" name="Api">
-
-          <button type="button" id="buttonJava" onclick="javaShow()" > Press to see javascript text</button>
 
         </div>
 

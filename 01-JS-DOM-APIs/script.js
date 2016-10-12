@@ -4,24 +4,24 @@ function show(){
     obj.style.visibility ="visible";
 }
 
-function joke() {
+function DoAJoke() {
   let xhttp = new XMLHttpRequest();
+
   xhttp.open("GET", "http://api.icndb.com/jokes/random", true);
+
   xhttp.onreadystatechange = function(event) {
-    let response = JSON.parse(event.target.response);
-    document.getElementById("hidden").innerHTML = response.value.joke;
-     if (xhttp.readyState === XMLHttpRequest.DONE) {
-       if (xhttp.responseText.value) {
-           document.getElementById("hidden").innerHTML  = xhttp.responseText.value.joke;
-       }
-     }
+        if (xhttp.readyState === XMLHttpRequest.DONE) {
+          let response = JSON.parse(event.target.response);
+          document.getElementById("hidden").innerHTML = response.value.joke;
+        }
    }
- xhttp.send();
+
+   xhttp.send();
 }
 
 
 // exercise 7
-function eventOnClick(){
+function secondJoke(){
  let config = {
    url: "http://api.icndb.com/jokes/random"
  }
@@ -50,25 +50,31 @@ function eventOnClick(){
  eventRequestReusable(config).then(resolve,reject);
 }
 
-function eventRequestReusable(object, resolve, reject) {
+function configAjax (methodHttp, url, asyncronic){
+ this.methodHttp = methodHttp;
+ this.url = url;
+ this.asyncronic = asyncronic;
+}
+
+function eventRequestReusable(object) {
  let promise = new Promise( function (resolve, reject) {
    let xhttp = new XMLHttpRequest();
 
-   xhttp.open("GET", object.url , true);
+   xhttp.open("GET", object.url);
    xhttp.send();
    xhttp.onload = function () {
-     if (this.readyState ===4 && this.status === 200) {
-       resolve(xhttp);
+     if (this.readyState ===4 && this.status == 200) {
+       resolve(xhttp.response);
      } else {
        reject(this.statusText);
      }
    };
    xhttp.onerror = function () {
     reject(this.statusText);
-   }
- })
+   };
+ });
  return promise;
-}
+};
 
 
 
@@ -76,24 +82,39 @@ function eventRequestReusable(object, resolve, reject) {
 // exercise 9
 
 
-function javaShow() {
-  let xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "https://api.github.com/search/repositories", true);
-  xhttp.onreadystatechange = function(event) {
-    let response = JSON.parse(event.target.response);
-    //let gitDeveloper = new XMLHttpRequest();
-    //let urlGit = response.errors[0].field;
-    document.getElementById("javashows").innerHTML  = xhttp.response.errors[0].field;
-     if (xhttp.readyState === XMLHttpRequest.DONE) {
-       if (xhttp.responseText.documentation_url) {
-          // let urlGit  = xhttp.responseText.errors[0].field;
-          document.getElementById("javashows").innerHTML  = xhttp.responseText.errors[0].field;
-       }
+function showRepositories() {
+  let xhttp = new configAjax("GET", "https://api.github.com/search/repositories?q=javascript", true);
+   eventRequestReusable(xhttp).then( function (response) {
+     elements = JSON.parse(response);
+     for (var i = 0; i < elements.items.length; i++){
+       var columnNode = document.createElement("li");
+       var textNode = document.createTextNode(elements.items[i].full_name);
+       columnNode.appendChild(textNode);
+       document.getElementById("elementList").appendChild(columnNode);
      }
-     gitDeveloper.open("GET", urlGit , true);
-
-   }
- xhttp.send();
-
-
+   }, function(error) {
+     document.getElementById("changeclass").innerHTML = "404 not found";
+     document.getElementById("changeclass").style.color = "red";
+ });
 }
+
+
+// exercise 10
+
+  function enterAnAPI(search){
+    let xhttp = new configAjax("GET", "https://api.github.com/search/repositories?q="+search, true);
+
+    eventRequestReusable(xhttp).then( function (response) {
+      elements = JSON.parse(response);
+      for (var i = 0; i < elements.items.length; i++){
+        var columnNode = document.createElement("li");
+        var textNode = document.createTextNode(elements.items[i].full_name);
+        columnNode.appendChild(textNode);
+        document.getElementById("elementList").appendChild(columnNode);
+      }
+    }, function(error) {
+      document.getElementById("changeclass").innerHTML = "404 not found";
+      document.getElementById("changeclass").style.color = "red";
+  });
+
+  }
