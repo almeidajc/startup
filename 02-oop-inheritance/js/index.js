@@ -49,6 +49,7 @@ class EventEmitter {
 
   }
 }
+// a ver que onda
 
 let eventEmitter = new EventEmitter();
 eventEmitter.on("click", function() {
