@@ -9,19 +9,13 @@ header, section, nav, aside, footer {
     width: 1000px;
 }
 
-<<<<<<< Updated upstream
-#hidden {
-=======
+
 #hiddenSection {
->>>>>>> Stashed changes
     background-color: #FF9;
     font-size: 25px;
     font-family: Arial;
     height: 300px;
-<<<<<<< Updated upstream
-=======
     visibility: hidden;
->>>>>>> Stashed changes
     width: 300px;
 }
 
@@ -34,11 +28,6 @@ h1 {
 }
 
 .exercise9 {
-<<<<<<< Updated upstream
-  color: ;
-  height: 400px;
-}
-=======
   border-top: solid;
   height: 400px;
 }
@@ -50,4 +39,3 @@ h1 {
 .showError {
   color: red;
 }
->>>>>>> Stashed changes

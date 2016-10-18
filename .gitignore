@@ -1,6 +1,3 @@
 /00-HTML-CSS-basics/*
-<<<<<<< Updated upstream
 /02-oop-inheritance/*
-=======
-/01-JS-DOM-APIs/*
->>>>>>> Stashed changes
+/node_modules/*
