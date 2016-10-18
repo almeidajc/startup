@@ -6,15 +6,17 @@
     <meta charset="utf-8">
     <title>Patterns and OOP in JavaScript</title>
 
-    <script type="text/javascript" src="patterns-1.1.js"> </script>
+    <script type="text/javascript" src="C:\Users\juan.almeida\startup\lib\patterns-1.1.js"> </script>
   </head>
 
   <body>
 
     <div class="container">
-
+        <label>Title </label>
         <input type="text" name="movieTitle" id="movieTitle">
+        <label>Year </label>
         <input type="number" name="movieYear" id="movieYear" min="1900" max="2016">
+        <label>Duration </label>
         <input type="number" name="movieDuration" id="movieDuration" min="15" max="600">
 
         <button type="button" name="createClase" onclick="createMovie(movieTitle.value, movieYear.value, movieDuration.value)">Create the movie </button>
