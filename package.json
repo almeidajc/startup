@@ -1,0 +1,27 @@
+{
+  "name": "startup",
+  "version": "1.0.0",
+  "description": "Please, use this repository as a base for you training phase. The idea is\r to fork this project so everyone uses the same folder structure for the\r exercises.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0"
+  },
+  "scripts": {
+    "build":"browserify 02-oop-inheritance/patterns-1.1.js -t babelify --outfile 02-oop-inheritance/executable.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/almeidajc/startup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/almeidajc/startup/issues"
+  },
+  "homepage": "https://github.com/almeidajc/startup#readme"
+}
