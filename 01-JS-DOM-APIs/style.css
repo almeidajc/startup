@@ -1,0 +1,41 @@
+header, section, nav, aside, footer {
+    display: block;
+}
+
+.wrapper {
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+    width: 1000px;
+}
+
+
+#hiddenSection {
+    background-color: #FF9;
+    font-size: 25px;
+    font-family: Arial;
+    height: 300px;
+    visibility: hidden;
+    width: 300px;
+}
+
+h1 {
+    color: #000000;
+    cursor: pointer;
+    font-size: 25px;
+    font-family: Arial;
+    position: absolute;
+}
+
+.exercise9 {
+  border-top: solid;
+  height: 400px;
+}
+
+.showIt {
+  visibility ="visible";
+}
+
+.showError {
+  color: red;
+}

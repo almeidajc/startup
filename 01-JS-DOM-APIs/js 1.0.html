@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <title>JavaScritp</title>
+
+        <script type="text/javascript" src="script.js"> </script>
+
+    </head>
+
+    <body onload="setTimeout(show, 2000);">
+
+        <div class="wrapper">
+          <!--  <img src="C:\Users\juan.almeida\Downloads\branca.jpg" alt="photo" /> -->
+            <section id="hiddenSection"><p> Hello world </p></section>
+
+
+            <!-- the program run but shoow me an error in the console -->
+            <button type="button" id="buttonSection" onclick="DoAJoke();" > Press for a joke</button>
+
+            <section>
+              <input type="button" value="Ajax" id="buttonSection" onclick="secondJoke();" />
+            </section>
+        </div>
+
+
+        <div class="exercise9">
+          <button type="button" id="buttonJava" onclick="showRepositories()" > Press to see javascript text</button>
+          <label>Insert what you want to search</label> <input type="text" id="Api" value="">
+          <button type="button" id="buttonApis" onclick="enterAnAPI(Api.value)" >Confirm</button>
+
+          <section>
+            <ul id="elementList"> </ul>
+          </section>
+
+        </div>
+
+    </body>
+</html>
