@@ -1,7 +1,8 @@
-import * as Actor from "classActor.js";
-import * as EventEmitter from "classEventEmitter.js";
-import * as classLogger from "classLogger.js";
-import * as movieClass from "classMovie.js";
+import {Actor} from "./classActor";
+import {EventEmitter} from "./classEventEmitter";
+import {logger} from "./classLogger";
+import {movieClass} from "./classMovie";
+
 
 
 let mylogger = new logger;

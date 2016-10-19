@@ -23,3 +23,6 @@ emit (movie, event) {
  }
 
 }
+
+
+export {EventEmitter}

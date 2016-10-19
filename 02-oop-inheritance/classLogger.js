@@ -6,3 +6,5 @@ class logger {
      console.log(movieExecute.title + ' ' + functionName)
  }
 }
+
+export {logger}

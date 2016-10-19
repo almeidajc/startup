@@ -1,3 +1,5 @@
+import {EventEmitter} from "./classEventEmitter";
+
 class movieClass extends EventEmitter{
   constructor (title, year, duration) {
     super ();
@@ -38,3 +40,5 @@ class movieClass extends EventEmitter{
   }
 
 }
+
+export { movieClass }
