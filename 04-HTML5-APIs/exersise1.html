@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <title>HTML5 APIs</title>
+
+    <script type="text/javascript" src="exersise1.js"> </script>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="exersise1-2">
+
+        <label>Text to save</label>
+        <textarea name="textToSave" id="textToSave" rows="8" cols="40"></textarea>
+        <button type="button" name="SaveText" onclick="saveText()">Unindexed save</button>
+        <button type="button" name="IndexedSave" onclick="indexedDBSave()">Indexed save</button>
+        <button type="button" name="DeleteItem" onclick="clearIndexedDB()">Delete all elements</button>
+
+      </div>
+      <div class="exersise3">
+        <div id="drop_zone">Drop files here</div>
+        <output id="list"></output>
+      </div>
+
+    </div>
+
+  </body>
+</html>
