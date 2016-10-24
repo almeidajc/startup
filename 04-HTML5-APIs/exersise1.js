@@ -48,31 +48,48 @@ function indexedDBSave () {
 
 
 
+ // function allowDrop(ev) {
+ //     ev.preventDefault();
+ // }
+ //
+ // function drag(ev) {
+ //     ev.dataTransfer.setData("drop", ev.target.id);
+ // }
+ //
+ // function drop(ev) {
+ //     ev.preventDefault();
+ //     var data = ev.dataTransfer.getData("drop");
+ //     ev.target.appendChild(document.getElementById(drop));
+ // }
 
- function handleFileSelect(evt) {
-  evt.stopPropagation();
-  evt.preventDefault();
+ let drop = document.getElementById("drop");
 
-  var files = evt.dataTransfer.files; // FileList object.
+ drop.ondragenter = function(event) {
+   drop.textContent = "";
+   event.stopPropagation();
+   event.preventDefault();
+ }
 
-  // files is a FileList of File objects. List some properties.
-  var output = [];
-  for (var i = 0, f; f = files[i]; i++) {
-    output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                f.size, ' bytes, last modified: ',
-                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-                '</li>');
-  }
-  document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-}
+ drop.ondragover = function(event) {
+   event.stopPropagation();
+   event.preventDefault();
+ }
 
-function handleDragOver(evt) {
-  evt.stopPropagation();
-  evt.preventDefault();
-  evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
-}
+ drop.ondrop = function(event) {
+   event.stopPropagation();
+   event.preventDefault();
+   dodrop(event);
+ }
 
-// Setup the dnd listeners.
-var dropZone = document.getElementById('drop_zone');
-dropZone.addEventListener('dragover', handleDragOver, false);
-dropZone.addEventListener('drop', handleFileSelect, false);
+ function dodrop(event) {
+   let dt = event.dataTransfer;
+   let file = dt.files[0];
+
+   let fileReader = new FileReader();
+   fileReader.readAsText(file);
+
+   fileReader.onloadend = function() {
+     document.getElementById("output").innerHTML = fileReader.result;
+     drop.innerHTML = "File " + file.name + " opened";
+   };
+ }

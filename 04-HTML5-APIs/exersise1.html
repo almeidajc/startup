@@ -4,8 +4,10 @@
 
     <meta charset="utf-8">
     <title>HTML5 APIs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script type="text/javascript" src="exersise1.js"> </script>
+    <link rel="stylesheet" href="style.css">
 
   </head>
   <body>
@@ -20,11 +22,13 @@
         <button type="button" name="DeleteItem" onclick="clearIndexedDB()">Delete all elements</button>
 
       </div>
-      <div class="exersise3">
-        <div id="drop_zone">Drop files here</div>
-        <output id="list"></output>
-      </div>
 
+      <section class="content">
+        <div id="drop" class="drop">
+          DROP ONLY ONE FILE HERE FROM FINDER OR EXPLORER TO OPEN IT IN TEXTAREA
+        </div>
+        <textarea name="output" rows="3" cols="50" id="output" class="output">Output</textarea>
+      </section>
     </div>
 
   </body>
