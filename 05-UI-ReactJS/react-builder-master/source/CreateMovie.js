@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './header';
 
 class CreateMovie extends React.Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class CreateMovie extends React.Component {
   render() {
     return (
       <div>
+            <Header />
             <label>Title: </label><input type="text" name="title" value={this.state.title} onChange={this.handleChangeTitle} /><br /><br />
             <label>Year: </label><input type="number" min="1900" max="2016" name="year" min="1900" max="2016" value={this.state.year} onChange={this.handleChangeYear} /><br /><br />
             <label>Duration in minutes: </label><input type="number"  name="duration" min="15" max="600" value={this.state.duration} onChange={this.handleChangeDuration}/><br /><br />

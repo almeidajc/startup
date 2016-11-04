@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from './header';
+
 
 class MovieList extends React.Component {
   constructor (props) {
@@ -9,9 +11,12 @@ class MovieList extends React.Component {
 
   render() {
     return (
-      <ul>
-        {this.renderItems()}
-      </ul>
+      <div>
+        <Header />
+        <ul>
+          {this.renderItems()}
+        </ul>
+      </div>
     );
   }
 

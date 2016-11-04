@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import CreateMovie from './CreateMovie';
 import MovieList from './MovieList';
 import MovieEdit from './MovieEdit';
+import Header from './header';
 
 class Movie extends React.Component{
   render () {
@@ -33,9 +34,6 @@ class Movie extends React.Component{
     localStorage.setItem("movieStorage", JSON.stringify(movies));
   }
 
-  editMovie() {
-
-  }
 };
 
 export default Movie;

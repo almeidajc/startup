@@ -1,5 +1,7 @@
 import React from 'react';
 import CreateMovie from './CreateMovie';
+import Header from './header';
+
 
 class MovieEdit extends React.Component {
   constructor (props) {
@@ -11,9 +13,12 @@ class MovieEdit extends React.Component {
 
   render() {
     return (
-      <ul>
-        {this.renderItems()}
-      </ul>
+      <div>
+        <Header />
+        <ul>
+          {this.renderItems()}
+        </ul>
+      </div>
     );
   }
 
@@ -37,8 +42,8 @@ class MovieEdit extends React.Component {
   renderItem (item, index) {
     return (
       <li key={index}>
-        {`Title: ${item.title} Year: ${item.year} Duration: ${item.duration}        `}
-        <button onClick={this.handleEditMovie(item.title)}> Edit </button>
+        {`Title: ${item.title} Year: ${item.year} Duration: ${item.duration}`}
+        <button className="EditButton" onClick={this.handleEditMovie(item.title)}> Edit </button>
       </li>
     );
   }
