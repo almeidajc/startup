@@ -1,50 +1,48 @@
-import React from 'react';
-import Header from './header';
-
+import React from 'react';//esta
+import Rout from './routes'; //no va
+import Movie from './Movie'; //esta
+import moviesStore from './moviesStore'; //esta
+import { connect } from 'react-redux'; //esta
+import { handleM } from './reducers.js'; //
+import { Link } from 'react-router'; //esta
+import { movieList } from './actions';  // esta
 
 class MovieList extends React.Component {
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
 
     this.renderItem = this.renderItem.bind(this);
   }
 
   render() {
     return (
-      <div>
-        <Header />
-        <ul>
-          {this.renderItems()}
-        </ul>
-      </div>
+      <ul>
+        <Movie />
+        {this.renderItems()}
+      </ul>
     );
   }
-
 
   renderItems () {
-    let favourites;
-    if(this.props.movies !== null){
-      favourites = this.props.movies.filter( function(item) {
-        return item.favourite
-      })
-      return favourites.map(this.renderItem);
-    }
-    return (
-      <li />
-    )
-  }
+     let movies;
+     movies = moviesStore.getState();
+     if(movies !== null){
+       return movies.map(this.renderItem);
+     }
+     return (
+       <li />
+     )
+   }
 
-  renderItem (item, index) {
-    return (
-      <li key={index}>
-        {`Title: ${item.title} Year: ${item.year} Duration: ${item.duration}`}
-      </li>
-    );
-  }
-};
-
-MovieList.propTypes = {
-  movies: React.PropTypes.array.isRequired
-};
+   renderItem (item, index) {
+     let boundItemClick = this.initializeState;
+     return (
+       <li key={index}>
+         {`Title: ${item.title} Year: ${item.year} Duration: ${item.duration}`}
+         <Link to={`/MovieInput/${JSON.stringify(item , item.id=index)}`}><button className="buttonSelect">Edit</button></Link>
+       </li>
+     );
+   }
+ };
 
 export default MovieList;
