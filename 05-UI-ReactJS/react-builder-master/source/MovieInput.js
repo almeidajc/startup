@@ -2,7 +2,8 @@ import React from 'react';
 import moviesStore from './moviesStore';
 import Movie from './Movie';
 import {movieInput, movieEdit, initializeState} from './actions';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import handleM from './reducers.js';
 
 class MovieInput extends React.Component {
@@ -43,7 +44,7 @@ class MovieInput extends React.Component {
   }
 
   handleSubmit(event) {
-    if ((this.props.params.movieItem) ===0){
+    if ((this.props.params.item) === "0"){
       moviesStore.dispatch(movieInput(this.state))
     }
     else{
@@ -54,7 +55,7 @@ class MovieInput extends React.Component {
   render() {
     return (
       <div>
-            <Movie/>Movie<br/><br/>
+            <Movie/>
               <label>Title: </label>
                 <input type="text" placeholder={this.props.title||"Title"} name="title" value={this.state.title} onChange={this.handleChangeTitle} /><br /><br />
               <label>Year: </label>
@@ -62,7 +63,7 @@ class MovieInput extends React.Component {
               <label>Duration: </label>
                 <input type="time" placeholder={this.props.duration||"Duration"} name="duration" value={this.state.duration} onChange={this.handleChangeDuration}/><br /><br />
               <label />Mark as favourite <input type="checkbox" checked={this.state.favourite} onChange={this.handleFavourite} /> <br /> <br />
-              <button onClick={this.handleSubmit.bind(this)}>Submit</button>
+              <Link to ="/"><button onClick={this.handleSubmit.bind(this)}>Submit</button></Link>
       </div>
     );
   }

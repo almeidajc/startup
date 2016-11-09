@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Movie from './Movie';
-import MovieList from './MovieList';
+import List from './List';
 import MovieInput from './MovieInput';
 import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -15,7 +15,7 @@ class Rout extends Component {
             <Route path='/' component={Movie} />
               <Route path='/MovieInput/' component={MovieInput} />
               <Route path='/MovieInput/:item' component={MovieInput} />
-              <Route path='/MovieList' component={MovieList} />
+              <Route path='/List' component={List} />
           </Router>
         </Provider>
       </div>

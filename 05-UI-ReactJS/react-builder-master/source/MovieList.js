@@ -1,16 +1,13 @@
-import React from 'react';//esta
-import Rout from './routes'; //no va
-import Movie from './Movie'; //esta
-import moviesStore from './moviesStore'; //esta
-import { connect } from 'react-redux'; //esta
-import { handleM } from './reducers.js'; //
-import { Link } from 'react-router'; //esta
-import { movieList } from './actions';  // esta
+import React from 'react';
+import Rout from './routes';
+import Movie from './Movie';
+import moviesStore from './moviesStore';
+import { Link } from 'react-router';
 
 class MovieList extends React.Component {
-  constructor () {
-    super();
-
+  constructor (props) {
+    super(props);
+    this.movieDelete = this.movieDelete.bind(this);
     this.renderItem = this.renderItem.bind(this);
   }
 
@@ -21,6 +18,10 @@ class MovieList extends React.Component {
         {this.renderItems()}
       </ul>
     );
+  }
+
+  movieDelete(index) {
+    this.props.onDelete(index)
   }
 
   renderItems () {
@@ -40,6 +41,7 @@ class MovieList extends React.Component {
        <li key={index}>
          {`Title: ${item.title} Year: ${item.year} Duration: ${item.duration}`}
          <Link to={`/MovieInput/${JSON.stringify(item , item.id=index)}`}><button className="buttonSelect">Edit</button></Link>
+         <button onClick={this.movieDelete.bind(this, index)}>Delete</button>
        </li>
      );
    }
