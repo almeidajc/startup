@@ -4,7 +4,7 @@ import Header from './header';
 class CreateMovie extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {title: "",year: "",duration: "", favourite: false};
+    this.state = {id: "", title: "", year: "", duration: "", favourite: false};
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeYear = this.handleChangeYear.bind(this);
     this.handleChangeDuration = this.handleChangeDuration.bind(this);
@@ -37,6 +37,9 @@ class CreateMovie extends React.Component {
   }
 
   handleSubmit(event) {
+    this.setState({
+      id: Date.now();
+    })
     if (this.props.onSubmit) {
       this.props.onSubmit(this.state);
     }

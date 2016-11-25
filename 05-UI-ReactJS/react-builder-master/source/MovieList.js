@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './header';
 
+import { Link } from "react-router";
+
 
 class MovieList extends React.Component {
   constructor (props) {
@@ -15,6 +17,7 @@ class MovieList extends React.Component {
         <Header />
         <ul>
           {this.renderItems()}
+          <Link to={`/movie/${movie.id}`}><button>Edit</button></Link>
         </ul>
       </div>
     );
