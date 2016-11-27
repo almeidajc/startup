@@ -14,7 +14,6 @@ class SearchConfig extends React.Component {
       title:"",
       begin_date:"",
       end_date:"",
-      sort:""
     }
 
 
@@ -32,16 +31,15 @@ class SearchConfig extends React.Component {
  handleBeginDate(event) {
    let date = new Date(event.target.value);
    this.setState({begin_date: date.getUTCFullYear() +""+ (date.getUTCMonth() + 1) +""+ date.getUTCDate()});
-   console.log(this.state.begin_date)
  }
 
  handleEndDate(event) {
    let date = new Date(event.target.value);
    this.setState({end_date: date.getUTCFullYear() +""+ (date.getUTCMonth() + 1) +""+ date.getUTCDate()});
-   console.log(this.state.end_date)
  }
 
  handleSubmit(event) {
+   console.log("entro");
    let today
    let date = new Date();
    today = date.getUTCFullYear() +""+ (date.getUTCMonth() + 1) +""+ date.getUTCDate();
@@ -101,45 +99,3 @@ export default SearchConfig;
 
  // "end_date"+ //yyyymmdd fecha max
  //Restricts responses to results with publication dates of the date specified or later.
-
- // "sort"+ // newest/oldest
- //By default, search results are sorted by their relevance to the query term (q). Use the sort parameter to sort by pub_date
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Para mostrar la noticia
-//
-// function showNotice() {
-//   // let xhttpConfig = configAjax("GET", "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=adf72c67e37a4af7aac681a489215b03"+params, true);
-//   // let xhttp = new XMLHttpRequest(xhttpConfig);
-//   let indexI;
-//   let params = "";
-//   let columnNode = document.createElement("li");
-//   // let textNode = document.createTextNode(elements.items[indexI].full_name);
-//   //cambiar nombre
-//    eventRequestReusable(xhttp).then( function (response) {
-//      elements = JSON.parse(response);
-//       elements.items.maps(function (item){
-//        columnNode = document.createElement("li");
-//       //  textNode = document.createTextNode(elements.items[indexI].full_name);
-//        //cambiar nombre
-//        columnNode.appendChild(textNode);
-//        return columnNode;
-//      });
-//    }, function(error) {
-//     //  document.getElementById("changeclass").innerHTML = "404 not found";
-//      // render
-//  });
-// }
-
-// creo que lo voy a tirar en el showNotices

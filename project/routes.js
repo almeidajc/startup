@@ -8,10 +8,12 @@ import SearchConfig from './SearchConfig';
 import ApiConfig from './ApiConfig';
 import ArticlesList from './ArticlesList';
 import Favourites from './favourites'
+// import Article from './Article'
               // <Route path='/favourites' component={Favourites} />
 /*
 <Route path='ApiConfig/:item' component={ApiConfig} />
 <Route path='/ArticlesList' component={ArticlesList} />
+<Route path='/article/:item' component={Article} />
 <Route path='/favourites' component={Favourites} />
 */
 
@@ -21,6 +23,7 @@ export default (
        <Route path='/' component={header}>
          <Route path='SearchConfig' component={SearchConfig} />
          <Route path='ApiConfig/:item' component={ApiConfig} />
+         <Route path='/favourites' component={Favourites} />
        </Route>
      </Router>
    </Provider>

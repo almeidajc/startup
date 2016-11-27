@@ -97,6 +97,7 @@ class Header extends React.Component{
     return (
       <div>
         <div>
+          <Link to="/"> Home</Link>
           <Link to="SearchConfig">Search Notices</Link>
           <Link to="ApiConfig/0">Show Notices</Link>
         </div>

@@ -11,17 +11,17 @@ class ApiConfig extends React.Component {
     this.state = {
       params: this.props.params.item,
     }
-    this.handleParams()
-    this.handleResponse()
+    this.handleParams = this.handleParams.bind(this);
+    this.handleResponse();
 
   }
 
-  handleParams(){
-    let today;
-    let date = new Date();
-    today = date.getUTCFullYear() +""+ (date.getUTCMonth() + 1) +""+ date.getUTCDate();
-    this.setState({params: `&begin_date=${today}`})
+  handleParams(event){
+    this.setState({params: ""})
+    // console.log(this.state.params);
+    // console.log("aca tambien");
   }
+
   handleResponse(rep){
     this.setState({response: rep});
     // console.log(this.state.response)
@@ -29,58 +29,63 @@ class ApiConfig extends React.Component {
 
     componentWillMount(){
       let thisClass = this;
-      if(thisClass.state.params.item === "0"){
-          thisClass.handleParams();
+      if(thisClass.state.params === "0"){
+          thisClass.handleParams.bind(this);
+          console.log("entro")
       }
+      console.log(this.state.params);
 
-      let xhttpConfig = {
-        method: "GET",
-        url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=adf72c67e37a4af7aac681a489215b03${this.state.params}`,
-        asyncronic: true
-      }
+      if(this.state.params != "0"){
 
-      function resolve(xhttp) {
-             if (xhttp.readyState === XMLHttpRequest.DONE) {
-               resp = JSON.parse(event.target.response);
-             }
-             thisClass.setState({response: resp})
-            //  thisClass.handleResponse(resp);
+      console.log(this.state.params)
+        let xhttpConfig = {
+          method: "GET",
+          url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=adf72c67e37a4af7aac681a489215b03${this.state.params}`,
+          asyncronic: true
+        }
 
-      }
+        function resolve(xhttp) {
+          if (xhttp.readyState === XMLHttpRequest.DONE) {
+            resp = JSON.parse(event.target.response);
+          }
+          thisClass.handleResponse(resp)
+
+        }
 
 
-      function reject() {
-        alert("we can't connect with the API")
-      }
+        function reject() {
+          alert("we can't connect with the API")
+        }
 
-      eventRequestReusable(xhttpConfig).then(resolve,reject);
+        eventRequestReusable(xhttpConfig).then(resolve,reject);
 
-      function eventRequestReusable(object) {
-       let promise = new Promise( function (resolve, reject) {
-         let xhttp = new XMLHttpRequest();
-         xhttp.open(object.method, object.url, object.asyncronic);
-         xhttp.send();
-         xhttp.onload = function () {
-           if (this.readyState === 4 && this.status === 200) {
-             resolve(xhttp);
-           } else {
-             reject(this.statusText);
-           }
-         };
-         xhttp.onerror = function () {
-          reject(this.statusText);
-         };
-       });
-       return promise;
+        function eventRequestReusable(object) {
+          let promise = new Promise( function (resolve, reject) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.open(object.method, object.url, object.asyncronic);
+            xhttp.send();
+            xhttp.onload = function () {
+              if (this.readyState === 4 && this.status === 200) {
+                resolve(xhttp);
+              } else {
+                reject(this.statusText);
+              }
+            };
+            xhttp.onerror = function () {
+              reject(this.statusText);
+            };
+          });
+          return promise;
+        }
+
       }
     }
 
 
+    // console.log(this.state.response);
     render(){
-
       return(
         <ArticlesList articles={this.state.response} />
-        // <label>{resp.response.status}</label>
       )
     }
   }
