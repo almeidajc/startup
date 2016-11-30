@@ -2,26 +2,32 @@ import React from 'react';
 // import {Link} from 'react-router';
 import { Button, Glyphicon, Image, Col, PageHeader, Row } from 'react-bootstrap';
 
+let fav, icon;
+
 class Article extends React.Component {
   constructor(props) {
     super(props)
-    let favourite
-    if(this.props.params.item.favourite === "no"){
-      fav = `add to favourite`
+    if(this.props.params.item.favourite === null){
+      fav = `add to favourite`;
+      icon = "ok";
     }
     else{
-      fav =  `remove to favourite`
+      fav =  `remove to favourite`;
+      icon = "remove";
     }
+    let item = JSON.parse(this.props.params.item)
     this.state = {
-      headline: this.props.params.item.headline.main ,
-      abstract: this.props.params.item.abstract,
-      pub_date: this.props.params.item.pub_date,
-      image: this.props.params.item.multimedia.url,
-      link: this.props.params.item.web_url,
-      favourite: this.props.params.item.favourite,
-      button_text: fav
+      headline: item.headline.main ,
+      abstract: item.abstract,
+      pub_date: item.pub_date,
+      image: item.multimedia.url,
+      link: item.web_url,
+      favourite: item.favourite,
+      button_text: fav,
+      button_icon: icon
     }
 
+    console.log(this.props.params.item)
     this.handleFavourite = this.handleFavourite.bind(this)
 
   }
@@ -39,16 +45,12 @@ handleFavourite(event){
   render(){
     return(
       <div>
-        <PageHeader xs={12} md={10} lg{8}>{this.state.headline}</PageHeader>
-        <Col xs={12} md={10} lg{8}>
+          <h1>{this.state.headline || item.headline.name}</h1>
           <Image src={`${this.state.image}`} thumbnail />
-        </Col>
-        <p>{this.state.abstract}</p>
-        <Row>
-          <Col sm={6} xs={6} lg={6} md={6}><Button onClick={this.}><Glyphicon glyph="star" />{this.state.button_text}</Button></Col>
-          <Col smOffset={6} xsOffset={6} lgOffset={6} mdOffset={6}><p>{this.state.pub_date}</p></Col>
-        </Row>
-        <a href={`https://static01.nyt.com/${this.state.link}`}><Button bsStyle="primary">Read more</Button></a>
+          <p>{this.state.abstract}</p>
+          <Button ><Glyphicon glyph={this.state.button_icon} />{this.state.button_text}</Button>
+          <p>{this.state.pub_date}</p>
+          <a href={`https://static01.nyt.com/${this.state.link}`}><Button bsStyle="primary">Read more</Button></a>
       </div>
     )
   }

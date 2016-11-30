@@ -3,15 +3,16 @@ import { ARTICLE_INPUT, ARTICLE_DELETE, INITIALIZE_STATE } from './actions'
 function storeArt(state = [ { article: {} } ], action) {
 
   let articles = JSON.parse(localStorage.getItem("articleStorage")) || [];
+
   switch (action.type) {
 
     case INITIALIZE_STATE:
-      state = movies;
+      state = articles;
       return state;
 
     case ARTICLE_INPUT:
-    state.push(action.movie);
-    localStorage.setItem("articleStorage", JSON.stringify(state));
+      state.push(action.article);
+      localStorage.setItem("articleStorage", JSON.stringify(state));
     return state;
 
     case ARTICLE_DELETE:

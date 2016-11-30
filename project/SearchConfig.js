@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 import {Button} from 'react-bootstrap';
 import Rout from './routes';
 
@@ -16,11 +16,11 @@ class SearchConfig extends React.Component {
       end_date:"",
     }
 
-
    this.handleTitle = this.handleTitle.bind(this);
    this.handleBeginDate = this.handleBeginDate.bind(this);
    this.handleEndDate = this.handleEndDate.bind(this);
    this.handleSubmit = this.handleSubmit.bind(this);
+
  }
 
 
@@ -39,7 +39,6 @@ class SearchConfig extends React.Component {
  }
 
  handleSubmit(event) {
-   console.log("entro");
    let today
    let date = new Date();
    today = date.getUTCFullYear() +""+ (date.getUTCMonth() + 1) +""+ date.getUTCDate();

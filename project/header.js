@@ -1,12 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, Router} from 'react-router';
 import {Image, Navbar, Nav, NavItem, MenuItem, Col, Row, Tab, TabContainer, NavDropdown} from 'react-bootstrap';
 
 import articleStore from './articleStore';
 import SearchConfig from './SearchConfig';
 import ApiConfig from './ApiConfig';
-// import ArticlesList from 'ArticlesList';
-// import Favourites from './favourites';
+import Favourites from './Favourites';
 import Rout from './routes';
 
 class Header extends React.Component{
@@ -100,6 +99,7 @@ class Header extends React.Component{
           <Link to="/"> Home</Link>
           <Link to="SearchConfig">Search Notices</Link>
           <Link to="ApiConfig/0">Show Notices</Link>
+          <Link to="Favourites">Show Favourites</Link>
         </div>
 
         {this.props.children}

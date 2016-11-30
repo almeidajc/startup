@@ -4,40 +4,34 @@ import Rout from './routes';
 
 import ArticlesList from './ArticlesList'
 
-let resp
+let resp;
+let par;
+
 class ApiConfig extends React.Component {
   constructor(props) {
-    super(props),
-    this.state = {
-      params: this.props.params.item,
+    super(props);
+    if(this.props.params.item === "0"){
+      par = ""
     }
-    this.handleParams = this.handleParams.bind(this);
+    else{
+      par = this.props.params.item
+    }
+    this.state = {
+      params: par,
+    }
+    console.log(this.props.params.item);
     this.handleResponse();
-
   }
 
-  handleParams(event){
-    this.setState({params: ""})
-    // console.log(this.state.params);
-    // console.log("aca tambien");
-  }
 
   handleResponse(rep){
     this.setState({response: rep});
-    // console.log(this.state.response)
   }
 
     componentWillMount(){
-      let thisClass = this;
-      if(thisClass.state.params === "0"){
-          thisClass.handleParams.bind(this);
-          console.log("entro")
-      }
-      console.log(this.state.params);
+        // localStorage.clear("articleStorage");// ver como borrar solo 1
+        let thisClass = this;
 
-      if(this.state.params != "0"){
-
-      console.log(this.state.params)
         let xhttpConfig = {
           method: "GET",
           url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=adf72c67e37a4af7aac681a489215b03${this.state.params}`,
@@ -48,7 +42,8 @@ class ApiConfig extends React.Component {
           if (xhttp.readyState === XMLHttpRequest.DONE) {
             resp = JSON.parse(event.target.response);
           }
-          thisClass.handleResponse(resp)
+          thisClass.handleResponse(resp.response)
+          // localStorage.setItem("articleStorage", resp.response);
 
         }
 
@@ -77,12 +72,8 @@ class ApiConfig extends React.Component {
           });
           return promise;
         }
-
-      }
     }
 
-
-    // console.log(this.state.response);
     render(){
       return(
         <ArticlesList articles={this.state.response} />
