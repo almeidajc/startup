@@ -8,6 +8,15 @@ import { articleInput, articleDelete } from './actions';
 import articleStore from './articleStore';
 import Article from './Article'
 
+
+let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+let request = indexedDB.open("NewNotices", 1);
+request.onsuccess = function(event) {
+  let db = event.target.result;
+  let objectStore = db.createObjectStore("NewNotices", { keyPath: "index" });
+  objectStore.createIndex("notice", "notice", { unique: false });
+}
+
 class ArticlesList extends React.Component {
   constructor(props) {
     super(props);
@@ -16,9 +25,9 @@ class ArticlesList extends React.Component {
     // console.log(this.props);
 }
 
-  showNotice(item){
-    console.log(JSON.stringify(item))
-    // this.context.router.push(`Article/${JSON.stringify(item)}`);
+  showNotice(index){
+    // console.log(JSON.stringify(item))
+    this.context.router.push(`Article/${index}`);
   }
 
   storeAction(item){
@@ -55,6 +64,15 @@ class ArticlesList extends React.Component {
    renderItem (item, index) {
       let boundItemClick = this.initializeState;
       let icon, text;
+
+      function add(){
+        let transaction = db.transaction(["NewNotices"], "readwrite");
+        transaction.objectStore("NewNotices").add({id: index, notice: item})
+      }
+
+
+
+
       if(item.favourite === undefined){
         text = `add to favourite`;
         icon = "ok";
@@ -68,7 +86,7 @@ class ArticlesList extends React.Component {
          <li key={index}>
            <h3>{`${item.headline.main || item.headline.name}`}</h3>
          </li>
-         <button onClick={()=>{this.showNotice(item)}} ><Glyphicon glyph="info-sign" />Read More</button>
+         <button onClick={()=>{this.showNotice(index)}} ><Glyphicon glyph="info-sign" />Read More</button>
          <button onClick={()=>{this.storeAction(item)}} ><Glyphicon glyph={icon} /> {text} </button>
        </div>
      );

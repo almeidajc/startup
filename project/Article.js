@@ -1,13 +1,28 @@
 import React from 'react';
 // import {Link} from 'react-router';
 import { Button, Glyphicon, Image, Col, PageHeader, Row } from 'react-bootstrap';
+import storeArt from './reducers'
+import { articleInput, articleDelete } from './actions';
+import articleStore from './articleStore';
 
 let fav, icon;
 
+let notice;
+let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+let request = indexedDB.open("NewNotices", 1);
+request.onsuccess = function(event) {
+  let db = event.target.result;
+}
+let transaction = db.transaction(["NewNotices"], "readwrite");
+
 class Article extends React.Component {
-  constructor(props) {
+    constructor(props) {
     super(props)
-    if(this.props.params.item.favourite === null){
+
+    notice  = transaction.id(this.props.params.index);
+
+    let item = JSON.parse(notice.notice)
+    if(item.favourite === null){
       fav = `add to favourite`;
       icon = "ok";
     }
@@ -15,7 +30,6 @@ class Article extends React.Component {
       fav =  `remove to favourite`;
       icon = "remove";
     }
-    let item = JSON.parse(this.props.params.item)
     this.state = {
       headline: item.headline.main ,
       abstract: item.abstract,
@@ -27,18 +41,18 @@ class Article extends React.Component {
       button_icon: icon
     }
 
-    console.log(this.props.params.item)
+    // console.log(this.props.params.item)
     this.handleFavourite = this.handleFavourite.bind(this)
 
   }
 
 handleFavourite(event){
   if(this.state.favourite === "no"){
-      // agregar a favoritos con el store
-  }
-  else{
-    // remover de favoritos
-  }
+      articleStore.dispatch(articleInput(item));
+      }
+    else{
+      articleStore.dispatch(articleDelete(item));
+    }
 
 }
 

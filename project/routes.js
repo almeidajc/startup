@@ -25,7 +25,7 @@ export default (
                       <Route path='SearchConfig' component={SearchConfig} />
                       <Route path='ApiConfig/:item' component={ApiConfig} />
                       <Route path='ArticlesList' component={ArticlesList} />
-                      <Route path='Article/:item' component={Article} />
+                      <Route path='Article/:index' component={Article} />
                       <Route path='Favourites' component={Favourites} />
                     </Route>
                   </Router>
